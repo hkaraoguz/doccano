@@ -171,6 +171,7 @@ class AnnotationList(generics.ListCreateAPIView):
     def get_queryset(self):
         project = get_object_or_404(Project, pk=self.kwargs['project_id'])
         model = project.get_annotation_class()
+        print("user: ",self.request.user)
         self.queryset = model.objects.filter(document=self.kwargs['doc_id'],
                                              user=self.request.user)
         return self.queryset
